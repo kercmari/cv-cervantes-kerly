@@ -430,7 +430,7 @@ function changeSkill() {
       { skill: "MySQL", score: "80" },
       { skill: "MongoDB", score: "70" },
       { skill: "AWS", score: "70" },
-      { skill: "Pyyhon", score: "75" },
+      { skill: "Python", score: "75" },
     ],
   };
 
@@ -472,7 +472,7 @@ function changeProfessional() {
       { skill: "MySQL", score: "80" },
       { skill: "MongoDB", score: "70" },
       { skill: "AWS", score: "70" },
-      { skill: "Pyyhon", score: "75" },
+      { skill: "Python", score: "75" },
     ],
   };
 
