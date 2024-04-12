@@ -1,4 +1,4 @@
-import { datos } from "./datos.js";
+import { datos, resumeProfesional } from './datos.js'
 /**
  * Template Name: MyResume
  * Updated: Jan 29 2024 with Bootstrap v5.3.2
@@ -6,308 +6,308 @@ import { datos } from "./datos.js";
  * Author: BootstrapMade.com
  * License: https://bootstrapmade.com/license/
  */
-(function () {
-  "use strict";
+;(function () {
+  'use strict'
 
   /**
    * Easy selector helper function
    */
   const select = (el, all = false) => {
-    el = el.trim();
+    el = el.trim()
     if (all) {
-      return [...document.querySelectorAll(el)];
+      return [...document.querySelectorAll(el)]
     } else {
-      return document.querySelector(el);
+      return document.querySelector(el)
     }
-  };
+  }
 
   /**
    * Easy event listener function
    */
   const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all);
+    let selectEl = select(el, all)
     if (selectEl) {
       if (all) {
-        selectEl.forEach((e) => e.addEventListener(type, listener));
+        selectEl.forEach(e => e.addEventListener(type, listener))
       } else {
-        selectEl.addEventListener(type, listener);
+        selectEl.addEventListener(type, listener)
       }
     }
-  };
+  }
 
   /**
    * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
-    el.addEventListener("scroll", listener);
-  };
+    el.addEventListener('scroll', listener)
+  }
 
   /**
    * Navbar links active state on scroll
    */
-  let navbarlinks = select("#navbar .scrollto", true);
+  let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
-    let position = window.scrollY + 200;
-    navbarlinks.forEach((navbarlink) => {
-      if (!navbarlink.hash) return;
-      let section = select(navbarlink.hash);
-      if (!section) return;
+    let position = window.scrollY + 200
+    navbarlinks.forEach(navbarlink => {
+      if (!navbarlink.hash) return
+      let section = select(navbarlink.hash)
+      if (!section) return
       if (
         position >= section.offsetTop &&
         position <= section.offsetTop + section.offsetHeight
       ) {
-        navbarlink.classList.add("active");
+        navbarlink.classList.add('active')
       } else {
-        navbarlink.classList.remove("active");
+        navbarlink.classList.remove('active')
       }
-    });
-  };
-  window.addEventListener("load", navbarlinksActive);
-  onscroll(document, navbarlinksActive);
+    })
+  }
+  window.addEventListener('load', navbarlinksActive)
+  onscroll(document, navbarlinksActive)
 
   /**
    * Scrolls to an element with header offset
    */
-  const scrollto = (el) => {
-    let elementPos = select(el).offsetTop;
+  const scrollto = el => {
+    let elementPos = select(el).offsetTop
     window.scrollTo({
       top: elementPos,
-      behavior: "smooth",
-    });
-  };
+      behavior: 'smooth'
+    })
+  }
 
   /**
    * Back to top button
    */
-  let backtotop = select(".back-to-top");
+  let backtotop = select('.back-to-top')
   if (backtotop) {
     const toggleBacktotop = () => {
       if (window.scrollY > 100) {
-        backtotop.classList.add("active");
+        backtotop.classList.add('active')
       } else {
-        backtotop.classList.remove("active");
+        backtotop.classList.remove('active')
       }
-    };
-    window.addEventListener("load", toggleBacktotop);
-    onscroll(document, toggleBacktotop);
+    }
+    window.addEventListener('load', toggleBacktotop)
+    onscroll(document, toggleBacktotop)
   }
 
   /**
    * Mobile nav toggle
    */
-  on("click", ".mobile-nav-toggle", function (e) {
-    select("body").classList.toggle("mobile-nav-active");
-    this.classList.toggle("bi-list");
-    this.classList.toggle("bi-x");
-  });
+  on('click', '.mobile-nav-toggle', function (e) {
+    select('body').classList.toggle('mobile-nav-active')
+    this.classList.toggle('bi-list')
+    this.classList.toggle('bi-x')
+  })
 
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
   on(
-    "click",
-    ".scrollto",
+    'click',
+    '.scrollto',
     function (e) {
       if (select(this.hash)) {
-        e.preventDefault();
+        e.preventDefault()
 
-        let body = select("body");
-        if (body.classList.contains("mobile-nav-active")) {
-          body.classList.remove("mobile-nav-active");
-          let navbarToggle = select(".mobile-nav-toggle");
-          navbarToggle.classList.toggle("bi-list");
-          navbarToggle.classList.toggle("bi-x");
+        let body = select('body')
+        if (body.classList.contains('mobile-nav-active')) {
+          body.classList.remove('mobile-nav-active')
+          let navbarToggle = select('.mobile-nav-toggle')
+          navbarToggle.classList.toggle('bi-list')
+          navbarToggle.classList.toggle('bi-x')
         }
-        scrollto(this.hash);
+        scrollto(this.hash)
       }
     },
     true
-  );
+  )
 
   /**
    * Scroll with ofset on page load with hash links in the url
    */
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     if (window.location.hash) {
       if (select(window.location.hash)) {
-        scrollto(window.location.hash);
+        scrollto(window.location.hash)
       }
     }
-  });
+  })
 
   /**
    * Preloader
    */
-  let preloader = select("#preloader");
+  let preloader = select('#preloader')
   if (preloader) {
-    window.addEventListener("load", () => {
-      preloader.remove();
-    });
+    window.addEventListener('load', () => {
+      preloader.remove()
+    })
   }
 
   /**
    * Hero type effect
    */
-  const typed = select(".typed");
+  const typed = select('.typed')
   if (typed) {
-    let typed_strings = typed.getAttribute("data-typed-items");
-    typed_strings = typed_strings.split(",");
-    new Typed(".typed", {
+    let typed_strings = typed.getAttribute('data-typed-items')
+    typed_strings = typed_strings.split(',')
+    new Typed('.typed', {
       strings: typed_strings,
       loop: true,
       typeSpeed: 100,
       backSpeed: 50,
-      backDelay: 2000,
-    });
+      backDelay: 2000
+    })
   }
 
   /**
    * Skills animation
    */
-  let skilsContent = select(".skills-content");
+  let skilsContent = select('.skills-content')
   if (skilsContent) {
     new Waypoint({
       element: skilsContent,
-      offset: "80%",
+      offset: '80%',
       handler: function (direction) {
-        let progress = select(".progress .progress-bar", true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute("aria-valuenow") + "%";
-        });
-      },
-    });
+        let progress = select('.progress .progress-bar', true)
+        progress.forEach(el => {
+          el.style.width = el.getAttribute('aria-valuenow') + '%'
+        })
+      }
+    })
   }
 
   /**
    * Porfolio isotope and filter
    */
-  window.addEventListener("load", () => {
-    let portfolioContainer = select(".portfolio-container");
+  window.addEventListener('load', () => {
+    let portfolioContainer = select('.portfolio-container')
     if (portfolioContainer) {
       let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: ".portfolio-item",
-      });
+        itemSelector: '.portfolio-item'
+      })
 
-      let portfolioFilters = select("#portfolio-flters li", true);
+      let portfolioFilters = select('#portfolio-flters li', true)
 
       on(
-        "click",
-        "#portfolio-flters li",
+        'click',
+        '#portfolio-flters li',
         function (e) {
-          e.preventDefault();
+          e.preventDefault()
           portfolioFilters.forEach(function (el) {
-            el.classList.remove("filter-active");
-          });
-          this.classList.add("filter-active");
+            el.classList.remove('filter-active')
+          })
+          this.classList.add('filter-active')
 
           portfolioIsotope.arrange({
-            filter: this.getAttribute("data-filter"),
-          });
-          portfolioIsotope.on("arrangeComplete", function () {
-            AOS.refresh();
-          });
+            filter: this.getAttribute('data-filter')
+          })
+          portfolioIsotope.on('arrangeComplete', function () {
+            AOS.refresh()
+          })
         },
         true
-      );
+      )
     }
-  });
+  })
 
   /**
    * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
-    selector: ".portfolio-lightbox",
-  });
+    selector: '.portfolio-lightbox'
+  })
 
   /**
    * Initiate portfolio details lightbox
    */
   const portfolioDetailsLightbox = GLightbox({
-    selector: ".portfolio-details-lightbox",
-    width: "90%",
-    height: "90vh",
-  });
+    selector: '.portfolio-details-lightbox',
+    width: '90%',
+    height: '90vh'
+  })
 
   /**
    * Portfolio details slider
    */
-  new Swiper(".portfolio-details-slider", {
+  new Swiper('.portfolio-details-slider', {
     speed: 400,
     loop: true,
     autoplay: {
       delay: 5000,
-      disableOnInteraction: false,
+      disableOnInteraction: false
     },
     pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-  });
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    }
+  })
 
   /**
    * Testimonials slider
    */
-  new Swiper(".testimonials-slider", {
+  new Swiper('.testimonials-slider', {
     speed: 600,
     loop: true,
     autoplay: {
       delay: 5000,
-      disableOnInteraction: false,
+      disableOnInteraction: false
     },
-    slidesPerView: "auto",
+    slidesPerView: 'auto',
     pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-  });
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    }
+  })
 
   /**
    * Animation on scroll
    */
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     AOS.init({
       duration: 1000,
-      easing: "ease-in-out",
+      easing: 'ease-in-out',
       once: true,
-      mirror: false,
-    });
-  });
+      mirror: false
+    })
+  })
 
   /**
    * Initiate Pure Counter
    */
-  new PureCounter();
+  new PureCounter()
   // json
-})();
+})()
 
-document.addEventListener("DOMContentLoaded", function () {
-  var checkbox = document.getElementById("language-toggle");
-  changeLang("en", datos);
-  checkbox.checked = true;
+document.addEventListener('DOMContentLoaded', function () {
+  var checkbox = document.getElementById('language-toggle')
+  changeLang('en', datos)
+  checkbox.checked = true
   // // Verifica si el toggle está seleccionado
   // if (!checkbox.checked) {
   //   // Si está seleccionado, establece el idioma por defecto en ruso
   //   changeLang("es", datos);
   // } else {
   //   // Si no está seleccionado, establece el idioma por defecto en inglés
-    
+
   //   console.log("Estoy en en");
   // }
-});
+})
 
-window.toggleLanguague= function() {
+window.toggleLanguague = function () {
   console.log(datos)
-  var checkbox = document.getElementById("language-toggle");
+  var checkbox = document.getElementById('language-toggle')
   console.log(checkbox)
 
   if (!checkbox.checked) {
     // Si el interruptor está en posición "on"
-    changeLang("es", datos);
+    changeLang('es', datos)
   } else {
     // Si el interruptor está en posición "off"
-    changeLang("en",datos);
+    changeLang('en', datos)
   }
 }
 
@@ -335,110 +335,128 @@ window.toggleLanguague= function() {
 // });
 
 // change innerhtml on radiobtn click
-function changeLang(langVal, data) {
+function changeLang (langVal, data) {
   // set local-storage lang value from value given in onchange="changeLang(value)"
   // localStorage.setItem('lang', langVal);
 
   // fun contentUpdate function with value from onchange="changeLang(value)"
-  contentUpdate(langVal, data);
+  contentUpdate(langVal, data)
 }
 
 // content/innerhtml update/assign
-function contentUpdate(cl, data) {
+function contentUpdate (cl, data) {
   // get current langage contents in array
   let currLang = Object.entries(data)[Object.keys(data).indexOf(cl)][1],
     // get current language content array length
-    langCont = Object.entries(currLang).length;
+    langCont = Object.entries(currLang).length
   // console.log(langCont);
 
   for (let i = 0; i < langCont; i++) {
     // get selectors which has .langchange classes
-    var getSelector = document.querySelectorAll(".langchange")[i];
+    var getSelector = document.querySelectorAll('.langchange')[i]
     if (getSelector) {
       // console.log(getSelector);
       // get data-key attribute from .langchange class selectors
-      let getAttr = getSelector.getAttribute("data-key");
+      let getAttr = getSelector.getAttribute('data-key')
 
       // console.log(
       //   "Todas las etiquetas",
       //   getSelector,
       //   getSelector.classList.contains("typed")
       // );
+      const valueKeyData = currLang[getAttr]
+      if (getAttr != 'experiences') {
+        // assign the data-key value from current language array to the .langchange[data-key] selector
+        getSelector.innerHTML = valueKeyData
+        if (getSelector.classList.contains('typed')) {
+          getSelector.setAttribute('data-typed-items', currLang[getAttr])
+        }
+      } else {
+        const contenedorProfessional = document.getElementById("professional");
+        contenedorProfessional.innerHTML = "";
+        // Iterar sobre las experiencias profesionales y agregarlas al contenedor
+        valueKeyData.forEach(experiencia => {
 
-      // assign the data-key value from current language array to the .langchange[data-key] selector
-      getSelector.innerHTML = currLang[getAttr];
-      if (getSelector.classList.contains("typed")) {
-        // Assign the value to the data-typed-items attribute{}
-        // console.log(
-        //   "Dentro",
-        //   currLang[getAttr],
-        //   getSelector.classList.contains("typed")
-        // );
-        getSelector.setAttribute("data-typed-items", currLang[getAttr]);
+          contenedorProfessional.innerHTML += crearExperienciaProfesional(experiencia);
+        });
       }
     }
   }
 }
+
+function crearExperienciaProfesional({ title, date, company, location, responsibilities }) {
+  const experienciaHTML = `
+    <div class="resume-item">
+      <h4>${title}</h4>
+      <h5>${date}</h5>
+      <p><em>${company}, ${location}</em></p>
+      <ul>
+        ${responsibilities.map(responsabilidad => `<li>${responsabilidad}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+  return experienciaHTML;
+}
 document
-  .getElementById("contactForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevenir el envío del formulario por defecto
+  .getElementById('contactForm')
+  .addEventListener('submit', function (event) {
+    event.preventDefault() // Prevenir el envío del formulario por defecto
 
     // Obtener valores de los campos del formulario
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var subject = document.getElementById("subject").value;
-    var message = document.getElementById("message").value;
+    var name = document.getElementById('name').value
+    var email = document.getElementById('email').value
+    var subject = document.getElementById('subject').value
+    var message = document.getElementById('message').value
 
     // Construir el cuerpo del mensaje para WhatsApp
     var body = encodeURIComponent(
-      "Hola! Soy " +
+      'Hola! Soy ' +
         name +
-        "😎.Te envio mi email para que me contactes" +
+        '😎.Te envio mi email para que me contactes' +
         email +
-        ".\nEscribo por el motivo de" +
+        '.\nEscribo por el motivo de' +
         subject +
-        "\n.A continucación detallo más información," +
+        '\n.A continucación detallo más información,' +
         message +
-        "📝"
-    );
+        '📝'
+    )
 
     // Agregar el cuerpo del mensaje al enlace de WhatsApp
-    var whatsappLink = this.action + "&text=" + body;
+    var whatsappLink = this.action + '&text=' + body
 
     // Redireccionar a WhatsApp
-    window.location.href = whatsappLink;
-  });
+    window.location.href = whatsappLink
+  })
 
-function changeSkill() {
+function changeSkill () {
   let obj = {
     frontend: [
-      { skill: "HTML", score: "100" },
-      { skill: "CSS", score: "90" },
-      { skill: "JavaScript", score: "75" },
-      { skill: "Angular JS", score: "60" },
-      { skill: "React JS", score: "70" },
-      { skill: "Vue JS", score: "90" },
-      { skill: "WordPress/CMS", score: "75" },
-      { skill: "Photoshop", score: "60" },
+      { skill: 'HTML', score: '100' },
+      { skill: 'CSS', score: '90' },
+      { skill: 'JavaScript', score: '75' },
+      { skill: 'Angular JS', score: '60' },
+      { skill: 'React JS', score: '70' },
+      { skill: 'Vue JS', score: '90' },
+      { skill: 'WordPress/CMS', score: '75' },
+      { skill: 'Photoshop', score: '60' }
     ],
     backend: [
-      { skill: "PHP/Laravel", score: "90" },
-      { skill: "Node Express", score: "75" },
-      { skill: ".NET", score: "60" },
-      { skill: "Docker", score: "70" },
-      { skill: "MySQL", score: "80" },
-      { skill: "MongoDB", score: "70" },
-      { skill: "AWS", score: "70" },
-      { skill: "Python", score: "75" },
-    ],
-  };
+      { skill: 'PHP/Laravel', score: '90' },
+      { skill: 'Node Express', score: '75' },
+      { skill: '.NET', score: '60' },
+      { skill: 'Docker', score: '70' },
+      { skill: 'MySQL', score: '80' },
+      { skill: 'MongoDB', score: '70' },
+      { skill: 'AWS', score: '70' },
+      { skill: 'Python', score: '75' }
+    ]
+  }
 
   for (let categoria in obj) {
-    let cardSkill = document.getElementById(categoria);
+    let cardSkill = document.getElementById(categoria)
     obj[categoria].forEach(({ skill, score }) => {
-      var nuevoDiv = document.createElement("div");
-      nuevoDiv.className = "progress";
+      var nuevoDiv = document.createElement('div')
+      nuevoDiv.className = 'progress'
       nuevoDiv.innerHTML = `
       <span class="skill">${skill} <i class="val">${score}%</i></span>
       <div class="progress-bar-wrap">
@@ -446,41 +464,41 @@ function changeSkill() {
         </div>
       </div>
    
-      `;
-      cardSkill.append(nuevoDiv);
-    });
+      `
+      cardSkill.append(nuevoDiv)
+    })
   }
 }
 
-function changeProfessional() {
+function changeProfessional () {
   let obj = {
     frontend: [
-      { skill: "HTML", score: "100" },
-      { skill: "CSS", score: "90" },
-      { skill: "JavaScript", score: "75" },
-      { skill: "Angular JS", score: "60" },
-      { skill: "React JS", score: "70" },
-      { skill: "Vue JS", score: "90" },
-      { skill: "WordPress/CMS", score: "75" },
-      { skill: "Photoshop", score: "60" },
+      { skill: 'HTML', score: '100' },
+      { skill: 'CSS', score: '90' },
+      { skill: 'JavaScript', score: '75' },
+      { skill: 'Angular JS', score: '60' },
+      { skill: 'React JS', score: '70' },
+      { skill: 'Vue JS', score: '90' },
+      { skill: 'WordPress/CMS', score: '75' },
+      { skill: 'Photoshop', score: '60' }
     ],
     backend: [
-      { skill: "PHP/Laravel", score: "90" },
-      { skill: "Node Express", score: "75" },
-      { skill: ".NET", score: "60" },
-      { skill: "Docker", score: "70" },
-      { skill: "MySQL", score: "80" },
-      { skill: "MongoDB", score: "70" },
-      { skill: "AWS", score: "70" },
-      { skill: "Python", score: "75" },
-    ],
-  };
+      { skill: 'PHP/Laravel', score: '90' },
+      { skill: 'Node Express', score: '75' },
+      { skill: '.NET', score: '60' },
+      { skill: 'Docker', score: '70' },
+      { skill: 'MySQL', score: '80' },
+      { skill: 'MongoDB', score: '70' },
+      { skill: 'AWS', score: '70' },
+      { skill: 'Python', score: '75' }
+    ]
+  }
 
   for (let categoria in obj) {
-    let cardSkill = document.getElementById(categoria);
+    let cardSkill = document.getElementById(categoria)
     obj[categoria].forEach(({ skill, score }) => {
-      var nuevoDiv = document.createElement("div");
-      nuevoDiv.className = "progress";
+      var nuevoDiv = document.createElement('div')
+      nuevoDiv.className = 'progress'
       nuevoDiv.innerHTML = `
       <span class="skill">${skill} <i class="val">${score}%</i></span>
       <div class="progress-bar-wrap">
@@ -488,9 +506,9 @@ function changeProfessional() {
         </div>
       </div>
    
-      `;
-      cardSkill.append(nuevoDiv);
-    });
+      `
+      cardSkill.append(nuevoDiv)
+    })
   }
 }
-changeSkill();
+changeSkill()

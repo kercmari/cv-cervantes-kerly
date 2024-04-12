@@ -54,7 +54,88 @@ export let datos ={
       "contact-locatinon": "Localidad",
       "contact-email": "Correo",
       "contact-call": "Celular",
-      "footer-verso": "Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres. Colosenses 3:23"
+      "footer-verso": "Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres. Colosenses 3:23",
+      "experiences":  [
+        {
+          title: "Desarrollador Full Stack",
+          date: "Ene. 2024 - Actualidad",
+          company: "ASLAM · Profesional independiente",
+          location: "Madrid, Comunidad de Madrid, España (En remoto)",
+          responsibilities: [
+            "Mantener sistemas web y móviles, así como agregar nuevas funcionalidades."
+          ]
+        },
+        
+        {
+          title: "Integración Back End",
+          date: "Ene. 2023 - Sep. 2023",
+          company: "JELOU S. A. / ANUBIS S.A.",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Integrar APIs REST y SOAP para facilitar la comunicación entre diferentes sistemas bancarios.",
+            "Creación de Lambdas con Serverless NodeJs para microservicios del sector bancario.",
+            "Crear arquitecturas basadas en eventos para activar acciones automatizadas en función de eventos específicos o horarios predefinidos con Serverless Lambda.",
+            "Diseñar y desarrollar scripts de automatización para optimizar procesos bancarios, incorporando lógica empresarial para lograr resultados deseados."
+          ]
+        },
+        {
+          title: "Desarrollador Back End",
+          date: "Mar. 2022 - May. 2023",
+          company: "ALDEBERAN CIA. LTDA / LOIDIMPSA",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Construir sistemas backend robustos y escalables utilizando Node.js para manejar la lógica del lado del servidor en aplicaciones relacionadas con criptomonedas.",
+            "Integrar funcionalidades relacionadas con criptomonedas, como la gestión de billeteras y el procesamiento de transacciones, en el frontend y backend de la aplicación.",
+            "Diseñar e implementar arquitecturas de microservicios utilizando AWS Lambda para crear componentes modulares y escalables."
+          ]
+        },
+        {
+          title: "Desarrollador Full Stack en Entrenamiento",
+          date: "Ene. 2022 - Feb. 2023",
+          company: "ALDEBERAN CIA. LTDA / LOIDIMPSA",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Diseñar y desarrollar aplicaciones web utilizando tecnologías front-end y back-end.",
+            "Implementar interfaces de usuario atractivas y funcionales, asegurando una experiencia de usuario optimizada.",
+            "Implementar Base RDS para comunicación con Servicio Web de AWS.",
+            "Trabajar en todas las capas del desarrollo, desde el diseño de la interfaz de usuario hasta la implementación del servidor y la base de datos."
+          ]
+        },
+        {
+          title: "Desarrollador Junior",
+          date: "Ene. 2021 - Abr. 2021",
+          company: "NOVACERO S.A.",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Participar en el desarrollo de aplicaciones utilizando el framework .Net para un sitio web de courier transnacional.",
+            "Contribuir a la integración de sistemas de facturación electrónica para garantizar la emisión de documentos legales y conformidad con regulaciones fiscales.",
+            "Implementar EC2 y Ligthsail para el servicio web con comunicación a Bucket AWS.",
+            "Participar en el desarrollo de una aplicación eficiente utilizando Vue.js para el front-end y Laravel para el back-end."
+          ]
+        },
+        {
+          title: "Desarrollador en Entrenamiento",
+          date: "Nov. 2021 - Marz. 2022",
+          company: "Algorithmics (Rusia)",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Diseñé y desarrollé módulos utilizando PHP nativo para integrar funcionalidades específicas en el sistema.",
+            "Desarrollé soluciones para la gestión eficiente de datos, garantizando la integridad y disponibilidad de la información. Esto incluyó la implementación de operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para manipular datos de manera segura y eficaz.",
+            "Diseñé algoritmos y funcionalidades para el cálculo y análisis de información."
+          ]
+        },
+        {
+          title: "Docente de Algorithmics (Rusia)",
+          date: "Nov. 2021 - Marz. 2022",
+          company: "Algorithmics (Rusia)",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Impartir conocimientos sobre Python e implementación de proyectos a jóvenes y niños.",
+            "Gestionar proyectos y documentación."
+          ]
+        }
+      ]
+      
 
     },
 
@@ -113,8 +194,106 @@ export let datos ={
       "contact-location": "Location",
       "contact-email": "Email",
       "contact-call": "Phone",
-      "footer-verse": "And whatever you do, do it heartily, as to the Lord and not to men. Colossians 3:23"
-
+      "footer-verse": "And whatever you do, do it heartily, as to the Lord and not to men. Colossians 3:23",
+      "experiences": [
+        {
+          title: "Full Stack Developer",
+          date: "Jan. 2024 - Present",
+          company: "ASLAM · Freelance",
+          location: "Madrid, Community of Madrid, Spain (Remote)",
+          responsibilities: [
+            "Maintaining web and mobile systems, as well as adding new functionalities."
+          ]
+        },
+        {
+          title: "Back End Integration",
+          date: "Jan 2023 - Sep 2023",
+          company: "JELOU S. A. / ANUBIS S.A.",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Integrate REST and SOAP APIs to facilitate seamless communication between different banking systems.",
+            "Develop robust and scalable backend code using JavaScript to handle data processing, manipulation, and communication with external APIs.",
+            "Create event-driven architectures to trigger automated actions based on specific events or predefined schedules with lambdas management.",
+            "Document code thoroughly, including API specifications, to facilitate seamless collaboration with cross-functional teams."
+          ]
+        },
+        {
+          title: "Back End Developer",
+          date: "May 2022 - Present",
+          company: "ANUBIS S.A.",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Develop responsive and user-friendly interfaces using React JS for cryptocurrency-related applications.",
+            "Build robust and scalable backend systems using Node.js to handle server-side logic for cryptocurrency applications.",
+            "Integrate cryptocurrency functionalities, such as wallet management and transaction processing, into the application's frontend and backend.",
+            "Design and implement microservices architecture using AWS Lambda to create modular and scalable components."
+          ]
+        },
+        {
+          title: "Training Full Stack Developer",
+          date: "Jan 2022 - Feb 2023",
+          company: "ALDEBERAN CIA. LTDA / LOIDIMPSA",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Implement attractive and functional user interfaces, ensuring an optimized user experience.",
+            "Develop algorithms for efficient control of equipment, with a focus on managing Ruckus controllers.",
+            "Implement features to monitor and manage internet connections, ensuring system stability and security.",
+            "Configure and manage FreeRADIUS to control network access and manage user authentication."
+          ]
+        },
+        {
+          title: "Junior Developer",
+          date: "Jan 2021 - Apr 2021",
+          company: "NOVACERO S.A.",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Contribute to the development of applications using the .Net framework for a transnational courier website.",
+            "Contribute to the integration of electronic invoicing systems to ensure the issuance of legal documents and compliance with tax regulations.",
+            "Collaborate in the implementation of payment gateways to facilitate secure and efficient transactions on the courier website.",
+            "Participate in the development of an efficient application using Vue.js for the front-end and Laravel for the back-end."
+          ]
+        },
+        {
+          title: "Training Developer",
+          date: "Nov 2021 - Mar 2022",
+          company: "Algorithmics (Rusia)",
+          location: "Guayaquil, Ecuador",
+          responsibilities: [
+            "Designed and developed modules using native PHP to integrate specific functionalities into the system. This involved crafting efficient and maintainable code, ensuring alignment with established development best practices.",
+            "Engineered solutions for the efficient management of data, ensuring the integrity and availability of information."
+          ]
+        }
+      ]      
 
     }
   }
+
+
+export let   resumeProfesional = {
+  experiences: [
+    {
+      title: "Senior graphic design specialist",
+      date: "2019 - Present",
+      company: "Experion",
+      location: "New York, NY",
+      responsibilities: [
+        "Lead in the design, development, and implementation of the graphic, layout, and production communication materials",
+        "Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project.",
+        "Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design",
+        "Oversee the efficient use of production project budgets ranging from $2,000 - $25,000"
+      ]
+    },
+    {
+      title: "Graphic design specialist",
+      date: "2017 - 2018",
+      company: "Stepping Stone Advertising",
+      location: "New York, NY",
+      responsibilities: [
+        "Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).",
+        "Managed up to 5 projects or tasks at a given time while under pressure",
+        "Recommended and consulted with clients on the most appropriate graphic design",
+        "Created 4+ design presentations and proposals a month for clients and account managers"
+      ]
+    }
+  ]
+};
