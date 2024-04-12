@@ -15,7 +15,7 @@ export let datos ={
       "about-email": "Correo:",
       "about-freelance": "Disponible",
       "fact-title": "Actualidad",
-      "fact-experence": "En mi historial, destaco el liderazgo en un emocionante proyecto de desarrollo de aplicaciones criptográficas y la participación clave en la integración bancaria y automatización financiera. Actualmente, me encuentro inmerso en la creación de un sistema de formación con módulos personalizados utilizando PHP nativo, enfocado en proporcionar experiencias de aprendizaje adaptadas y eficientes. Mi pasión radica en explorar las aplicaciones de la inteligencia artificial en la medicina para el diagnóstico y la predicción de enfermedades. Además, me entusiasma contribuir a la transparencia y eficiencia en la gestión pública y judicial mediante la combinación de blockchain e inteligencia artificial",
+      "fact-experence": "En mi historial, destaco el liderazgo en un emocionante proyecto de desarrollo de aplicaciones criptográficas y la participación clave en la integración bancaria y automatización financiera. Actualmente, me encuentro inmerso en la creación de un sistema de formación con módulos personalizados utilizando PHP, enfocado en proporcionar experiencias de aprendizaje adaptadas y eficientes. Mi pasión radica en explorar las aplicaciones de la inteligencia artificial en la medicina para el diagnóstico y la predicción de enfermedades. Además, me entusiasma contribuir a la transparencia y eficiencia en la gestión pública y judicial mediante la combinación de blockchain e inteligencia artificial",
       "fact-clients": "Clientes Satisfechos",
       "fact-proyect": "Poryectos",
       "fact-support": "Horas de Soporte",
