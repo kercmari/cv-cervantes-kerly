@@ -25,7 +25,7 @@ export let datos ={
       "resume-intro": "Comencé mi educación en el colegio Guayaquil, donde desarrollé una base o logica de programación. Luego, avancé a la Escuela Superior Politécnica del Litoral, donde continué nutriendo mi pasión por la tecnología y la innovación. Esta trayectoria educativa ha sido fundamental para mi desarrollo profesional",
       "resume-education-title-1": "Escuela Superior Politécnica del Litoral",
       "resume-education-carrer-1": "Telemática",
-      "resume-education-resume-": "Sólidos conocimientos en las áreas de redes y comunicación de datos, tecnologías de información e infraestructura tecnológica brindándoles capacidades para diseñar, implementar y dirigir proyectos tecnológicos multidisciplinarios. ",
+      "resume-education-resume-1": "Sólidos conocimientos en las áreas de redes y comunicación de datos, tecnologías de información e infraestructura tecnológica brindándoles capacidades para diseñar, implementar y dirigir proyectos tecnológicos multidisciplinarios. ",
       "resume-education-title-2": "Colegio Guayaquil",
       "resume-education-carrer-2": "Bachiller de Informática",
       "resume-education-resume-2": "Me instruí en el área digital, como poder crear nuestro primer sito con sitos no-code. Adicional desarrolle logica matemática para resolver problemas reales a menor escala",
