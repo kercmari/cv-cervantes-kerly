@@ -8,7 +8,7 @@ export const datos = {
     "hero-title": "Soy",
     "hero-rol": "Full Stack Developer,AI Automation Engineer,Backend Developer,Data Engineering Consultant",
     "about-title": "Sobre mí",
-    "about-text": "Semi Senior Full Stack Developer / AI Automation Engineer con {experiencePlus} de experiencia en desarrollo web, backend, frontend, integraciones cloud y automatización con IA. He trabajado en soluciones para fintech, contact center, bots, telecomunicaciones y plataformas empresariales, construyendo APIs, microservicios, flujos serverless, pipelines de datos e integraciones seguras.",
+    "about-text": "Semi Senior Full Stack Developer / AI Automation Engineer con {experiencePlus} de experiencia en desarrollo web, backend, frontend, integraciones cloud y automatización con IA. He trabajado en soluciones para fintech, contact center, bots, telecomunicaciones, educación tecnológica y plataformas empresariales, construyendo APIs, microservicios, flujos serverless, pipelines de datos e integraciones seguras.",
     "about-rol": "Full Stack Developer / AI Automation Engineer",
     "about-hobby": "Mi enfoque combina criterio técnico, automatización inteligente y orientación a impacto operativo. Busco crear sistemas escalables, mantenibles y seguros que reduzcan trabajo manual, mejoren la trazabilidad y aceleren procesos empresariales.",
     "about-language": "Idiomas:",
@@ -25,19 +25,19 @@ export const datos = {
     "about-freelance-label": "Disponibilidad:",
     "about-freelance": "Remoto · Consultoría · Freelance",
     "fact-title": "Impacto profesional",
-    "fact-experence": "Cuento con {experienceFull} de experiencia aplicada en productos reales para automatización, integraciones bancarias, procesamiento de datos, contact center con IA, voz IP, conectores empresariales y sistemas cloud.",
+    "fact-experence": "Cuento con {experienceFull} de experiencia aplicada en productos reales para automatización, integraciones bancarias, procesamiento de datos, contact center con IA, voz IP, educación tecnológica, conectores empresariales y sistemas cloud.",
     "fact-years": "Años de experiencia",
-    "fact-sectors": "Sectores: fintech, telecom, contact center, IA y enterprise",
+    "fact-sectors": "Sectores: fintech, telecom, contact center, IA, educación y enterprise",
     "fact-tech": "Tecnologías clave entre backend, cloud, datos e IA",
     "skill-title": "Habilidades técnicas",
-    "skill-resume": "Stack principal: Node.js, Python, React, Angular, .NET, AWS, Docker, PostgreSQL, MongoDB, Redis, Milvus y Apache Spark. Experiencia construyendo APIs, automatizaciones, servicios serverless, pipelines de datos, integraciones OAuth2 y flujos con LLMs.",
+    "skill-resume": "Stack principal: Node.js, Python, PHP, Laravel, Django, React, Vue.js, Angular, .NET Core, AWS Lambda, Azure, Docker, Linux, PostgreSQL, MySQL, MongoDB, Redis, Milvus, Apache Spark, MinIO, embeddings y LLMs. Experiencia construyendo APIs, automatizaciones, servicios serverless, pipelines de datos, integraciones OAuth2 y flujos con IA.",
     "resume-title": "Experiencia y formación",
-    "resume-intro": "Trayectoria enfocada en desarrollo full stack, backend, automatización con IA, integraciones cloud y data engineering. La experiencia profesional combina proyectos remotos internacionales, consultoría part-time y desarrollo de soluciones empresariales.",
-    "education-title": "Educación",
+    "resume-intro": "Trayectoria enfocada en desarrollo full stack, backend, automatización con IA, integraciones cloud, data engineering y formación tecnológica para jóvenes. La experiencia profesional combina proyectos remotos internacionales, consultoría part-time, desarrollo de soluciones empresariales y enseñanza práctica de programación.",
+    "education-title": "Educación / Stack técnico",
     "resume-education-title-1": "ESPOL · Escuela Superior Politécnica del Litoral",
     "resume-education-carrer-1": "Ingeniería en Telemática",
     "resume-education-date-1": "2017 - 2022",
-    "resume-education-resume-1": "Especialización en tecnologías de comunicación, redes, software, automatización, infraestructura tecnológica y transmisión de datos.",
+    "resume-education-resume-1": "Especialización en tecnologías de comunicación, redes, software, automatización, infraestructura tecnológica y transmisión de datos. Stack técnico: backend con Node.js, Python, PHP, Laravel, Django y .NET Core; frontend con React.js, Vue.js, Angular, JavaScript, HTML y CSS; cloud y DevOps con AWS Lambda, Docker, Linux y Azure; bases de datos con PostgreSQL, MySQL, MongoDB, Redis y Milvus; IA/Data con LLMs, Spark, MinIO y embeddings.",
     "certifications-title": "Certificaciones",
     "certification-1": "Full Stack Developer - ReactJS, NodeJS, Django, OWASP · ESPOL · 2024",
     "certification-2": "FullStack Web Dev - Django, Spring Boot, SOLID · HackWomen México · 2024",
@@ -130,6 +130,18 @@ export const datos = {
           "Integré pasarelas de pago y sistemas administrativos como Medianet, Paymentez, Contifico y Datil.",
           "Aporté mejoras en facturación, procesos financieros y trazabilidad operativa."
         ]
+      },
+      {
+        title: "Training Developer / Instructor de Python",
+        date: "may. 2021 - nov. 2021",
+        company: "Algorithmics",
+        location: "Programa educativo de origen ruso para jóvenes · Guayaquil",
+        responsibilities: [
+          "Diseñé y desarrollé módulos en Python para integrar funcionalidades demostrativas en juegos, aplicando buenas prácticas de programación orientada a objetos.",
+          "Impartí clases de Python a jóvenes que iniciaban en el mundo de la programación.",
+          "Elaboré retos y diseños de algoritmos para fortalecer capacidades de análisis, lógica y resolución de problemas.",
+          "Acompañé el aprendizaje práctico mediante ejercicios, proyectos guiados y explicación progresiva de conceptos técnicos."
+        ]
       }
     ]
   },
@@ -142,7 +154,7 @@ export const datos = {
     "hero-title": "I'm",
     "hero-rol": "Full Stack Developer,AI Automation Engineer,Backend Developer,Data Engineering Consultant",
     "about-title": "About me",
-    "about-text": "Semi Senior Full Stack Developer / AI Automation Engineer with {experiencePlus} of experience in web development, backend, frontend, cloud integrations and AI-powered automation. I have worked on fintech, contact center, bot, telecom and enterprise platforms, building APIs, microservices, serverless workflows, data pipelines and secure integrations.",
+    "about-text": "Semi Senior Full Stack Developer / AI Automation Engineer with {experiencePlus} of experience in web development, backend, frontend, cloud integrations and AI-powered automation. I have worked on fintech, contact center, bot, telecom, tech education and enterprise platforms, building APIs, microservices, serverless workflows, data pipelines and secure integrations.",
     "about-rol": "Full Stack Developer / AI Automation Engineer",
     "about-hobby": "My work combines technical judgment, intelligent automation and operational impact. I focus on building scalable, maintainable and secure systems that reduce manual work, improve traceability and accelerate business processes.",
     "about-language": "Languages:",
@@ -159,19 +171,19 @@ export const datos = {
     "about-freelance-label": "Availability:",
     "about-freelance": "Remote · Consulting · Freelance",
     "fact-title": "Professional impact",
-    "fact-experence": "I have {experienceFull} of hands-on experience in automation products, banking integrations, data processing, AI-powered contact centers, IP voice, enterprise connectors and cloud systems.",
+    "fact-experence": "I have {experienceFull} of hands-on experience in automation products, banking integrations, data processing, AI-powered contact centers, IP voice, tech education, enterprise connectors and cloud systems.",
     "fact-years": "Years of experience",
-    "fact-sectors": "Sectors: fintech, telecom, contact center, AI and enterprise",
+    "fact-sectors": "Sectors: fintech, telecom, contact center, AI, education and enterprise",
     "fact-tech": "Core technologies across backend, cloud, data and AI",
     "skill-title": "Technical skills",
-    "skill-resume": "Core stack: Node.js, Python, React, Angular, .NET, AWS, Docker, PostgreSQL, MongoDB, Redis, Milvus and Apache Spark. Experience building APIs, automations, serverless services, data pipelines, OAuth2 integrations and LLM-powered workflows.",
+    "skill-resume": "Core stack: Node.js, Python, PHP, Laravel, Django, React, Vue.js, Angular, .NET Core, AWS Lambda, Azure, Docker, Linux, PostgreSQL, MySQL, MongoDB, Redis, Milvus, Apache Spark, MinIO, embeddings and LLMs. Experience building APIs, automations, serverless services, data pipelines, OAuth2 integrations and AI-powered workflows.",
     "resume-title": "Experience and education",
-    "resume-intro": "Career focused on full stack development, backend engineering, AI automation, cloud integrations and data engineering. My background combines international remote projects, part-time consulting and enterprise software delivery.",
-    "education-title": "Education",
+    "resume-intro": "Career focused on full stack development, backend engineering, AI automation, cloud integrations, data engineering and technology education for young learners. My background combines international remote projects, part-time consulting, enterprise software delivery and hands-on programming instruction.",
+    "education-title": "Education / Technical stack",
     "resume-education-title-1": "ESPOL · Escuela Superior Politécnica del Litoral",
     "resume-education-carrer-1": "Telematics Engineering",
     "resume-education-date-1": "2017 - 2022",
-    "resume-education-resume-1": "Specialization in communication technologies, networks, software, automation, technology infrastructure and data transmission.",
+    "resume-education-resume-1": "Specialization in communication technologies, networks, software, automation, technology infrastructure and data transmission. Technical stack: backend with Node.js, Python, PHP, Laravel, Django and .NET Core; frontend with React.js, Vue.js, Angular, JavaScript, HTML and CSS; cloud and DevOps with AWS Lambda, Docker, Linux and Azure; databases with PostgreSQL, MySQL, MongoDB, Redis and Milvus; AI/Data with LLMs, Spark, MinIO and embeddings.",
     "certifications-title": "Certifications",
     "certification-1": "Full Stack Developer - ReactJS, NodeJS, Django, OWASP · ESPOL · 2024",
     "certification-2": "FullStack Web Dev - Django, Spring Boot, SOLID · HackWomen Mexico · 2024",
@@ -263,6 +275,18 @@ export const datos = {
           "Participated in the migration and optimization of modules toward Vue.js and Laravel.",
           "Integrated payment gateways and administrative systems such as Medianet, Paymentez, Contifico and Datil.",
           "Delivered improvements in invoicing, financial processes and operational traceability."
+        ]
+      },
+      {
+        title: "Training Developer / Python Instructor",
+        date: "May 2021 - Nov. 2021",
+        company: "Algorithmics",
+        location: "Russian-origin educational program for young learners · Guayaquil",
+        responsibilities: [
+          "Designed and developed Python modules to integrate demonstrative game features, applying object-oriented programming best practices.",
+          "Taught Python to young learners starting their programming journey.",
+          "Created challenges and algorithm exercises to strengthen analysis, logic and problem-solving skills.",
+          "Supported hands-on learning through exercises, guided projects and progressive explanations of technical concepts."
         ]
       }
     ]
