@@ -1,6 +1,6 @@
 import { datos } from './datos.js'
 
-const EXPERIENCE_START_DATE = new Date(2021, 11, 1) // December 2021
+const EXPERIENCE_START_DATE = new Date(2021, 4, 1) // May 2021
 
 const select = (el, all = false) => {
   el = el.trim()
@@ -126,12 +126,13 @@ function changeSkill () {
     backend: [
       { skill: 'Node.js', score: '85' },
       { skill: 'Python', score: '80' },
+      { skill: 'PHP/Laravel/Django', score: '75' },
       { skill: '.NET Core', score: '75' },
-      { skill: 'AWS Serverless', score: '80' },
-      { skill: 'Docker', score: '75' },
-      { skill: 'PostgreSQL/MongoDB', score: '80' },
-      { skill: 'Redis/Milvus/Spark', score: '75' },
-      { skill: 'LLM Automation', score: '80' }
+      { skill: 'AWS/Azure Serverless', score: '80' },
+      { skill: 'Docker/Linux', score: '75' },
+      { skill: 'PostgreSQL/MySQL/MongoDB', score: '80' },
+      { skill: 'Redis/Milvus/Spark/MinIO', score: '75' },
+      { skill: 'LLM Automation & Embeddings', score: '80' }
     ]
   }
 
