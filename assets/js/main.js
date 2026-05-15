@@ -1,514 +1,290 @@
-import { datos, resumeProfesional } from './datos.js'
-/**
- * Template Name: MyResume
- * Updated: Jan 29 2024 with Bootstrap v5.3.2
- * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
- * Author: BootstrapMade.com
- * License: https://bootstrapmade.com/license/
- */
-;(function () {
-  'use strict'
+import { datos } from './datos.js'
 
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
+const EXPERIENCE_START_DATE = new Date(2021, 4, 1) // May 2021
+
+const select = (el, all = false) => {
+  el = el.trim()
+  return all ? [...document.querySelectorAll(el)] : document.querySelector(el)
+}
+
+const on = (type, el, listener, all = false) => {
+  const selectEl = select(el, all)
+  if (!selectEl) return
+  if (all) selectEl.forEach(e => e.addEventListener(type, listener))
+  else selectEl.addEventListener(type, listener)
+}
+
+const getExperienceInfo = lang => {
+  const now = new Date()
+  let years = now.getFullYear() - EXPERIENCE_START_DATE.getFullYear()
+  let months = now.getMonth() - EXPERIENCE_START_DATE.getMonth()
+
+  if (now.getDate() < EXPERIENCE_START_DATE.getDate()) months--
+  if (months < 0) {
+    years--
+    months += 12
+  }
+
+  return {
+    years,
+    months,
+    experiencePlus: lang === 'es' ? `+${years} años` : `${years}+ years`,
+    experienceFull:
+      lang === 'es'
+        ? `${years} años${months > 0 ? ` y ${months} meses` : ''}`
+        : `${years} years${months > 0 ? ` and ${months} months` : ''}`
+  }
+}
+
+const applyDynamicValues = (value, lang) => {
+  if (typeof value !== 'string') return value
+  const experience = getExperienceInfo(lang)
+  return value
+    .replaceAll('{experiencePlus}', experience.experiencePlus)
+    .replaceAll('{experienceFull}', experience.experienceFull)
+    .replaceAll('{experienceYears}', experience.years)
+}
+
+const updateTyped = typedElement => {
+  if (!typedElement || !window.Typed) return
+  if (typedElement._typedInstance) typedElement._typedInstance.destroy()
+
+  const typedStrings = typedElement.getAttribute('data-typed-items')
+  if (!typedStrings) return
+
+  typedElement.textContent = ''
+  typedElement._typedInstance = new Typed('.typed', {
+    strings: typedStrings.split(','),
+    loop: true,
+    typeSpeed: 100,
+    backSpeed: 50,
+    backDelay: 2000
+  })
+}
+
+const crearExperienciaProfesional = ({ title, date, company, location, responsibilities }) => `
+  <div class="resume-item">
+    <h4>${title}</h4>
+    <h5>${date}</h5>
+    <p><em>${company}, ${location}</em></p>
+    <ul>${responsibilities.map(item => `<li>${item}</li>`).join('')}</ul>
+  </div>
+`
+
+const contentUpdate = (lang, data) => {
+  const currLang = data[lang]
+  if (!currLang) return
+
+  document.documentElement.lang = lang
+
+  document.querySelectorAll('.langchange').forEach(selector => {
+    const key = selector.getAttribute('data-key')
+    const value = currLang[key]
+    if (value === undefined) return
+
+    if (key === 'experiences') {
+      const professional = document.getElementById('professional')
+      if (professional) professional.innerHTML = value.map(crearExperienciaProfesional).join('')
+      return
     }
-  }
 
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
+    const finalValue = applyDynamicValues(value, lang)
+    selector.innerHTML = finalValue
+
+    if (selector.classList.contains('typed')) {
+      selector.setAttribute('data-typed-items', finalValue)
+      updateTyped(selector)
     }
+  })
+
+  const exp = getExperienceInfo(lang)
+  document.querySelectorAll('[data-dynamic="experience-years"]').forEach(el => {
+    el.setAttribute('data-purecounter-end', exp.years)
+    el.textContent = exp.years
+  })
+}
+
+const changeLang = langVal => {
+  contentUpdate(langVal, datos)
+}
+
+window.toggleLanguague = function () {
+  const checkbox = document.getElementById('language-toggle')
+  changeLang(checkbox && !checkbox.checked ? 'es' : 'en')
+}
+
+function changeSkill () {
+  const skills = {
+    frontend: [
+      { skill: 'React JS', score: '85' },
+      { skill: 'Angular', score: '80' },
+      { skill: 'Vue JS', score: '75' },
+      { skill: 'JavaScript', score: '85' },
+      { skill: 'HTML/CSS', score: '90' },
+      { skill: 'UI Integration', score: '80' }
+    ],
+    backend: [
+      { skill: 'Node.js', score: '85' },
+      { skill: 'Python', score: '80' },
+      { skill: 'PHP/Laravel/Django', score: '75' },
+      { skill: '.NET Core', score: '75' },
+      { skill: 'AWS/Azure Serverless', score: '80' },
+      { skill: 'Docker/Linux', score: '75' },
+      { skill: 'PostgreSQL/MySQL/MongoDB', score: '80' },
+      { skill: 'Redis/Milvus/Spark/MinIO', score: '75' },
+      { skill: 'LLM Automation & Embeddings', score: '80' }
+    ]
   }
 
-  /**
-   * Easy on scroll event listener
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
+  Object.entries(skills).forEach(([category, items]) => {
+    const cardSkill = document.getElementById(category)
+    if (!cardSkill) return
+    cardSkill.innerHTML = ''
 
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
+    items.forEach(({ skill, score }) => {
+      const nuevoDiv = document.createElement('div')
+      nuevoDiv.className = 'progress'
+      nuevoDiv.innerHTML = `
+        <span class="skill">${skill} <i class="val">${score}%</i></span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" role="progressbar" aria-valuenow="${score}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>`
+      cardSkill.append(nuevoDiv)
+    })
+  })
+}
+
+function initContactForm () {
+  const form = document.getElementById('contactForm')
+  if (!form) return
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault()
+
+    const name = document.getElementById('name').value
+    const email = document.getElementById('email').value
+    const subject = document.getElementById('subject').value
+    const message = document.getElementById('message').value
+
+    const body = encodeURIComponent(
+      `Hola, soy ${name}. Mi correo es ${email}.\nAsunto: ${subject}\nMensaje: ${message}`
+    )
+
+    window.location.href = `${this.action}&text=${body}`
+  })
+}
+
+function initTemplateBehaviors () {
+  const navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
-    let position = window.scrollY + 200
+    const position = window.scrollY + 200
     navbarlinks.forEach(navbarlink => {
       if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
+      const section = select(navbarlink.hash)
       if (!section) return
-      if (
-        position >= section.offsetTop &&
-        position <= section.offsetTop + section.offsetHeight
-      ) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
+      navbarlink.classList.toggle(
+        'active',
+        position >= section.offsetTop && position <= section.offsetTop + section.offsetHeight
+      )
     })
   }
+
   window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
+  document.addEventListener('scroll', navbarlinksActive)
 
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = el => {
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos,
-      behavior: 'smooth'
-    })
-  }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
+  const backtotop = select('.back-to-top')
   if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
+    const toggleBacktotop = () => backtotop.classList.toggle('active', window.scrollY > 100)
     window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
+    document.addEventListener('scroll', toggleBacktotop)
   }
 
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function (e) {
+  on('click', '.mobile-nav-toggle', function () {
     select('body').classList.toggle('mobile-nav-active')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
   })
 
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on(
-    'click',
-    '.scrollto',
-    function (e) {
-      if (select(this.hash)) {
-        e.preventDefault()
+  on('click', '.scrollto', function (e) {
+    if (!select(this.hash)) return
+    e.preventDefault()
 
-        let body = select('body')
-        if (body.classList.contains('mobile-nav-active')) {
-          body.classList.remove('mobile-nav-active')
-          let navbarToggle = select('.mobile-nav-toggle')
-          navbarToggle.classList.toggle('bi-list')
-          navbarToggle.classList.toggle('bi-x')
-        }
-        scrollto(this.hash)
-      }
-    },
-    true
-  )
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
+    const body = select('body')
+    if (body.classList.contains('mobile-nav-active')) {
+      body.classList.remove('mobile-nav-active')
+      const navbarToggle = select('.mobile-nav-toggle')
+      navbarToggle.classList.toggle('bi-list')
+      navbarToggle.classList.toggle('bi-x')
     }
+
+    window.scrollTo({ top: select(this.hash).offsetTop, behavior: 'smooth' })
+  }, true)
+
+  window.addEventListener('load', () => {
+    const preloader = select('#preloader')
+    if (preloader) preloader.remove()
+
+    if (window.location.hash && select(window.location.hash)) {
+      window.scrollTo({ top: select(window.location.hash).offsetTop, behavior: 'smooth' })
+    }
+
+    if (window.AOS) {
+      AOS.init({ duration: 1000, easing: 'ease-in-out', once: true, mirror: false })
+    }
+
+    if (window.PureCounter) new PureCounter()
   })
 
-  /**
-   * Preloader
-   */
-  let preloader = select('#preloader')
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
-    })
-  }
-
-  /**
-   * Hero type effect
-   */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    })
-  }
-
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content')
-  if (skilsContent) {
+  const skilsContent = select('.skills-content')
+  if (skilsContent && window.Waypoint) {
     new Waypoint({
       element: skilsContent,
       offset: '80%',
-      handler: function (direction) {
-        let progress = select('.progress .progress-bar', true)
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
+      handler: () => {
+        select('.progress .progress-bar', true).forEach(el => {
+          el.style.width = `${el.getAttribute('aria-valuenow')}%`
         })
       }
     })
   }
 
-  /**
-   * Porfolio isotope and filter
-   */
   window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container')
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
-      })
+    const portfolioContainer = select('.portfolio-container')
+    if (!portfolioContainer || !window.Isotope) return
 
-      let portfolioFilters = select('#portfolio-flters li', true)
+    const portfolioIsotope = new Isotope(portfolioContainer, { itemSelector: '.portfolio-item' })
+    const portfolioFilters = select('#portfolio-flters li', true)
 
-      on(
-        'click',
-        '#portfolio-flters li',
-        function (e) {
-          e.preventDefault()
-          portfolioFilters.forEach(function (el) {
-            el.classList.remove('filter-active')
-          })
-          this.classList.add('filter-active')
-
-          portfolioIsotope.arrange({
-            filter: this.getAttribute('data-filter')
-          })
-          portfolioIsotope.on('arrangeComplete', function () {
-            AOS.refresh()
-          })
-        },
-        true
-      )
-    }
+    on('click', '#portfolio-flters li', function (e) {
+      e.preventDefault()
+      portfolioFilters.forEach(el => el.classList.remove('filter-active'))
+      this.classList.add('filter-active')
+      portfolioIsotope.arrange({ filter: this.getAttribute('data-filter') })
+      portfolioIsotope.on('arrangeComplete', () => window.AOS && AOS.refresh())
+    }, true)
   })
 
-  /**
-   * Initiate portfolio lightbox
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  })
+  if (window.GLightbox) {
+    GLightbox({ selector: '.portfolio-lightbox' })
+    GLightbox({ selector: '.portfolio-details-lightbox', width: '90%', height: '90vh' })
+  }
 
-  /**
-   * Initiate portfolio details lightbox
-   */
-  const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
-  })
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  })
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  })
-
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
+  if (window.Swiper) {
+    new Swiper('.portfolio-details-slider', {
+      speed: 400,
+      loop: true,
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', type: 'bullets', clickable: true }
     })
-  })
-
-  /**
-   * Initiate Pure Counter
-   */
-  new PureCounter()
-  // json
-})()
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  var checkbox = document.getElementById('language-toggle')
-  changeLang('en', datos)
-  checkbox.checked = true
-  // // Verifica si el toggle está seleccionado
-  // if (!checkbox.checked) {
-  //   // Si está seleccionado, establece el idioma por defecto en ruso
-  //   changeLang("es", datos);
-  // } else {
-  //   // Si no está seleccionado, establece el idioma por defecto en inglés
-
-  //   console.log("Estoy en en");
-  // }
+  const checkbox = document.getElementById('language-toggle')
+  if (checkbox) checkbox.checked = true
+  changeSkill()
+  changeLang('en')
+  initContactForm()
 })
 
-window.toggleLanguague = function () {
-  console.log(datos)
-  var checkbox = document.getElementById('language-toggle')
-  console.log(checkbox)
-
-  if (!checkbox.checked) {
-    // Si el interruptor está en posición "on"
-    changeLang('es', datos)
-  } else {
-    // Si el interruptor está en posición "off"
-    changeLang('en', datos)
-  }
-}
-
-// run function after page load :: get/set localstorage value and run function
-// document.addEventListener("DOMContentLoaded", function(event) {
-//   var appLang = localStorage.getItem('lang');
-
-//   // if no language value saved in local-storage, set en as default
-//   if(appLang === null){
-//     localStorage.setItem('lang', 'en'); // updaet local-storage
-
-//     // fun contentUpdate function with en value
-//     contentUpdate('en');
-
-//     // select radiobutton which has data-value = en
-//     document.querySelector('[data-value="en"]').checked = true;
-//   }
-//   else{
-//     // fun contentUpdate function with value from local-storage - en, ru..
-//     contentUpdate(appLang);
-
-//     // select radiobutton which has data-value == local storage value
-//     document.querySelector('[data-value="'+appLang+'"]').checked = true;
-//   }
-// });
-
-// change innerhtml on radiobtn click
-function changeLang (langVal, data) {
-  // set local-storage lang value from value given in onchange="changeLang(value)"
-  // localStorage.setItem('lang', langVal);
-
-  // fun contentUpdate function with value from onchange="changeLang(value)"
-  contentUpdate(langVal, data)
-}
-
-// content/innerhtml update/assign
-function contentUpdate (cl, data) {
-  // get current langage contents in array
-  let currLang = Object.entries(data)[Object.keys(data).indexOf(cl)][1],
-    // get current language content array length
-    langCont = Object.entries(currLang).length
-  // console.log(langCont);
-
-  for (let i = 0; i < langCont; i++) {
-    // get selectors which has .langchange classes
-    var getSelector = document.querySelectorAll('.langchange')[i]
-    if (getSelector) {
-      // console.log(getSelector);
-      // get data-key attribute from .langchange class selectors
-      let getAttr = getSelector.getAttribute('data-key')
-
-      // console.log(
-      //   "Todas las etiquetas",
-      //   getSelector,
-      //   getSelector.classList.contains("typed")
-      // );
-      const valueKeyData = currLang[getAttr]
-      if (getAttr != 'experiences') {
-        // assign the data-key value from current language array to the .langchange[data-key] selector
-        getSelector.innerHTML = valueKeyData
-        if (getSelector.classList.contains('typed')) {
-          getSelector.setAttribute('data-typed-items', currLang[getAttr])
-        }
-      } else {
-        const contenedorProfessional = document.getElementById("professional");
-        contenedorProfessional.innerHTML = "";
-        // Iterar sobre las experiencias profesionales y agregarlas al contenedor
-        valueKeyData.forEach(experiencia => {
-
-          contenedorProfessional.innerHTML += crearExperienciaProfesional(experiencia);
-        });
-      }
-    }
-  }
-}
-
-function crearExperienciaProfesional({ title, date, company, location, responsibilities }) {
-  const experienciaHTML = `
-    <div class="resume-item">
-      <h4>${title}</h4>
-      <h5>${date}</h5>
-      <p><em>${company}, ${location}</em></p>
-      <ul>
-        ${responsibilities.map(responsabilidad => `<li>${responsabilidad}</li>`).join('')}
-      </ul>
-    </div>
-  `;
-  return experienciaHTML;
-}
-document
-  .getElementById('contactForm')
-  .addEventListener('submit', function (event) {
-    event.preventDefault() // Prevenir el envío del formulario por defecto
-
-    // Obtener valores de los campos del formulario
-    var name = document.getElementById('name').value
-    var email = document.getElementById('email').value
-    var subject = document.getElementById('subject').value
-    var message = document.getElementById('message').value
-
-    // Construir el cuerpo del mensaje para WhatsApp
-    var body = encodeURIComponent(
-      'Hola! Soy ' +
-        name +
-        '😎.Te envio mi email para que me contactes' +
-        email +
-        '.\nEscribo por el motivo de' +
-        subject +
-        '\n.A continucación detallo más información,' +
-        message +
-        '📝'
-    )
-
-    // Agregar el cuerpo del mensaje al enlace de WhatsApp
-    var whatsappLink = this.action + '&text=' + body
-
-    // Redireccionar a WhatsApp
-    window.location.href = whatsappLink
-  })
-
-function changeSkill () {
-  let obj = {
-    frontend: [
-      { skill: 'HTML', score: '100' },
-      { skill: 'CSS', score: '90' },
-      { skill: 'JavaScript', score: '75' },
-      { skill: 'Angular JS', score: '60' },
-      { skill: 'React JS', score: '70' },
-      { skill: 'Vue JS', score: '90' },
-      { skill: 'WordPress/CMS', score: '75' },
-      { skill: 'Photoshop', score: '60' }
-    ],
-    backend: [
-      { skill: 'PHP/Laravel', score: '90' },
-      { skill: 'Node Express', score: '75' },
-      { skill: '.NET', score: '60' },
-      { skill: 'Docker', score: '70' },
-      { skill: 'MySQL', score: '80' },
-      { skill: 'MongoDB', score: '70' },
-      { skill: 'AWS', score: '70' },
-      { skill: 'Python', score: '75' }
-    ]
-  }
-
-  for (let categoria in obj) {
-    let cardSkill = document.getElementById(categoria)
-    obj[categoria].forEach(({ skill, score }) => {
-      var nuevoDiv = document.createElement('div')
-      nuevoDiv.className = 'progress'
-      nuevoDiv.innerHTML = `
-      <span class="skill">${skill} <i class="val">${score}%</i></span>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar" role="progressbar" aria-valuenow="${score}" aria-valuemin="0" aria-valuemax="100">
-        </div>
-      </div>
-   
-      `
-      cardSkill.append(nuevoDiv)
-    })
-  }
-}
-
-function changeProfessional () {
-  let obj = {
-    frontend: [
-      { skill: 'HTML', score: '100' },
-      { skill: 'CSS', score: '90' },
-      { skill: 'JavaScript', score: '75' },
-      { skill: 'Angular JS', score: '60' },
-      { skill: 'React JS', score: '70' },
-      { skill: 'Vue JS', score: '90' },
-      { skill: 'WordPress/CMS', score: '75' },
-      { skill: 'Photoshop', score: '60' }
-    ],
-    backend: [
-      { skill: 'PHP/Laravel', score: '90' },
-      { skill: 'Node Express', score: '75' },
-      { skill: '.NET', score: '60' },
-      { skill: 'Docker', score: '70' },
-      { skill: 'MySQL', score: '80' },
-      { skill: 'MongoDB', score: '70' },
-      { skill: 'AWS', score: '70' },
-      { skill: 'Python', score: '75' }
-    ]
-  }
-
-  for (let categoria in obj) {
-    let cardSkill = document.getElementById(categoria)
-    obj[categoria].forEach(({ skill, score }) => {
-      var nuevoDiv = document.createElement('div')
-      nuevoDiv.className = 'progress'
-      nuevoDiv.innerHTML = `
-      <span class="skill">${skill} <i class="val">${score}%</i></span>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar" role="progressbar" aria-valuenow="${score}" aria-valuemin="0" aria-valuemax="100">
-        </div>
-      </div>
-   
-      `
-      cardSkill.append(nuevoDiv)
-    })
-  }
-}
-changeSkill()
+initTemplateBehaviors()
